@@ -1,7 +1,9 @@
+import { prisma } from '../../../prisma/generated/prisma-client'
+
 export default {
   Query: {
-    userById: (_, { id }, { prisma }) => {
-      return prisma.user({ id })
+    userById: (_, { userId }) => {
+      return prisma.user({ id: userId })
     }
   }
 }

@@ -13,13 +13,6 @@ type User {
   chats: [Chat!]!
 }
 
-input CreateUserInput {
-  username: String!
-  email: String!
-  firstName: String!
-  lastName: String!
-  bio: String
-}
 
 type Post {
   id: ID!

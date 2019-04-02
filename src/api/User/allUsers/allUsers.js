@@ -1,12 +1,9 @@
+import { prisma } from '../../../prisma/generated/prisma-client'
+
 export default {
   Query: {
-    allUsers: (_, { id, query, first, skip, after, orderBy }, { prisma }) => {
-      const opArgs = {
-        first,
-        skip,
-        after,
-        orderBy
-      }
+    allUsers: (_, { query }) => {
+      const opArgs = {}
 
       if (query) {
         opArgs.where = {
@@ -20,7 +17,6 @@ export default {
           ]
         }
       }
-
       return prisma.users(opArgs)
     }
   }

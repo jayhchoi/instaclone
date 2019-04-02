@@ -1,8 +1,9 @@
+import {prisma } from '../../../prisma/generated/prisma-client'
+
 export default {
   Mutation: {
-    createUser: async (_, { data }, { prisma }) => {
-      const user = await prisma.createUser(data)
-      return user
+    createUser: (_, { data }) => {
+      return await prisma.createUser(data)
     }
   }
 }

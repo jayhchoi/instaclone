@@ -362,6 +362,8 @@ export type UserOrderByInput =
   | "username_DESC"
   | "email_ASC"
   | "email_DESC"
+  | "loginSecret_ASC"
+  | "loginSecret_DESC"
   | "firstName_ASC"
   | "firstName_DESC"
   | "lastName_ASC"
@@ -480,6 +482,20 @@ export interface UserWhereInput {
   email_not_starts_with?: String;
   email_ends_with?: String;
   email_not_ends_with?: String;
+  loginSecret?: String;
+  loginSecret_not?: String;
+  loginSecret_in?: String[] | String;
+  loginSecret_not_in?: String[] | String;
+  loginSecret_lt?: String;
+  loginSecret_lte?: String;
+  loginSecret_gt?: String;
+  loginSecret_gte?: String;
+  loginSecret_contains?: String;
+  loginSecret_not_contains?: String;
+  loginSecret_starts_with?: String;
+  loginSecret_not_starts_with?: String;
+  loginSecret_ends_with?: String;
+  loginSecret_not_ends_with?: String;
   firstName?: String;
   firstName_not?: String;
   firstName_in?: String[] | String;
@@ -798,6 +814,7 @@ export interface UserCreateManyWithoutChatsInput {
 export interface UserCreateWithoutChatsInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -847,6 +864,7 @@ export interface UserCreateOneWithoutLikesInput {
 export interface UserCreateWithoutLikesInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -888,6 +906,7 @@ export interface UserCreateOneWithoutPostsInput {
 export interface UserCreateWithoutPostsInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -938,6 +957,7 @@ export interface UserCreateOneWithoutCommentsInput {
 export interface UserCreateWithoutCommentsInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -956,6 +976,7 @@ export interface UserCreateManyWithoutFollowingInput {
 export interface UserCreateWithoutFollowingInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -996,6 +1017,7 @@ export interface UserCreateOneInput {
 export interface UserCreateInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -1015,6 +1037,7 @@ export interface UserCreateManyWithoutFollowersInput {
 export interface UserCreateWithoutFollowersInput {
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -1056,6 +1079,7 @@ export interface UserUpdateWithWhereUniqueWithoutChatsInput {
 export interface UserUpdateWithoutChatsDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1207,6 +1231,7 @@ export interface UserUpdateOneRequiredWithoutLikesInput {
 export interface UserUpdateWithoutLikesDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1270,6 +1295,7 @@ export interface UserUpdateOneRequiredWithoutPostsInput {
 export interface UserUpdateWithoutPostsDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1357,6 +1383,7 @@ export interface UserUpdateOneRequiredWithoutCommentsInput {
 export interface UserUpdateWithoutCommentsDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1393,6 +1420,7 @@ export interface UserUpdateWithWhereUniqueWithoutFollowingInput {
 export interface UserUpdateWithoutFollowingDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1468,6 +1496,7 @@ export interface UserUpdateOneRequiredInput {
 export interface UserUpdateDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1505,6 +1534,7 @@ export interface UserUpdateWithWhereUniqueWithoutFollowersInput {
 export interface UserUpdateWithoutFollowersDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -1564,6 +1594,20 @@ export interface UserScalarWhereInput {
   email_not_starts_with?: String;
   email_ends_with?: String;
   email_not_ends_with?: String;
+  loginSecret?: String;
+  loginSecret_not?: String;
+  loginSecret_in?: String[] | String;
+  loginSecret_not_in?: String[] | String;
+  loginSecret_lt?: String;
+  loginSecret_lte?: String;
+  loginSecret_gt?: String;
+  loginSecret_gte?: String;
+  loginSecret_contains?: String;
+  loginSecret_not_contains?: String;
+  loginSecret_starts_with?: String;
+  loginSecret_not_starts_with?: String;
+  loginSecret_ends_with?: String;
+  loginSecret_not_ends_with?: String;
   firstName?: String;
   firstName_not?: String;
   firstName_in?: String[] | String;
@@ -1619,6 +1663,7 @@ export interface UserUpdateManyWithWhereNestedInput {
 export interface UserUpdateManyDataInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -2034,6 +2079,7 @@ export interface PostUpdateManyMutationInput {
 export interface UserUpdateInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -2048,6 +2094,7 @@ export interface UserUpdateInput {
 export interface UserUpdateManyMutationInput {
   username?: String;
   email?: String;
+  loginSecret?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -2196,6 +2243,7 @@ export interface User {
   id: ID_Output;
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -2205,6 +2253,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   username: () => Promise<String>;
   email: () => Promise<String>;
+  loginSecret: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   bio: () => Promise<String>;
@@ -2282,6 +2331,7 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  loginSecret: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
@@ -3229,6 +3279,7 @@ export interface UserPreviousValues {
   id: ID_Output;
   username: String;
   email: String;
+  loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
@@ -3240,6 +3291,7 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   username: () => Promise<String>;
   email: () => Promise<String>;
+  loginSecret: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   bio: () => Promise<String>;
@@ -3251,6 +3303,7 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
+  loginSecret: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
