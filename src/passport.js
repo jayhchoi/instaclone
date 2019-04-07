@@ -1,5 +1,4 @@
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
-import { prisma } from './prisma/generated/prisma-client'
 import passport from 'passport'
 
 const opts = {}
@@ -21,7 +20,7 @@ passport.use(
     // Passport gets jwt from Auth header and decodes it
     try {
       const userId = jwt_payload.id
-      if (user) return done(null, userId) // No err Yes user
+      if (userId) return done(null, userId) // No err Yes user
       return done(null, false) // No err No user
     } catch (error) {
       return done(error, false) // Yes err No user

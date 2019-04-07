@@ -3,8 +3,8 @@ import { isAuthenticated } from '../../../middlewares'
 
 export default {
   Mutation: {
-    createComment: (_, { postId, text }, { user }) => {
-      isAuthenticated(user)
+    createComment: (_, { postId, text }, { userId }) => {
+      isAuthenticated(userId)
       return prisma.createComment({
         text,
         post: {
@@ -14,7 +14,7 @@ export default {
         },
         user: {
           connect: {
-            id: user.id
+            id: userId
           }
         }
       })

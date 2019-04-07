@@ -358,6 +358,8 @@ export interface ClientConstructor<T> {
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC"
   | "username_ASC"
   | "username_DESC"
   | "email_ASC"
@@ -454,6 +456,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  avatar?: String;
+  avatar_not?: String;
+  avatar_in?: String[] | String;
+  avatar_not_in?: String[] | String;
+  avatar_lt?: String;
+  avatar_lte?: String;
+  avatar_gt?: String;
+  avatar_gte?: String;
+  avatar_contains?: String;
+  avatar_not_contains?: String;
+  avatar_starts_with?: String;
+  avatar_not_starts_with?: String;
+  avatar_ends_with?: String;
+  avatar_not_ends_with?: String;
   username?: String;
   username_not?: String;
   username_in?: String[] | String;
@@ -556,6 +572,22 @@ export interface UserWhereInput {
   chats_every?: ChatWhereInput;
   chats_some?: ChatWhereInput;
   chats_none?: ChatWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -614,6 +646,22 @@ export interface PostWhereInput {
   comments_every?: CommentWhereInput;
   comments_some?: CommentWhereInput;
   comments_none?: CommentWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: PostWhereInput[] | PostWhereInput;
   OR?: PostWhereInput[] | PostWhereInput;
   NOT?: PostWhereInput[] | PostWhereInput;
@@ -649,6 +697,22 @@ export interface FileWhereInput {
   url_ends_with?: String;
   url_not_ends_with?: String;
   post?: PostWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: FileWhereInput[] | FileWhereInput;
   OR?: FileWhereInput[] | FileWhereInput;
   NOT?: FileWhereInput[] | FileWhereInput;
@@ -671,6 +735,22 @@ export interface LikeWhereInput {
   id_not_ends_with?: ID_Input;
   user?: UserWhereInput;
   post?: PostWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: LikeWhereInput[] | LikeWhereInput;
   OR?: LikeWhereInput[] | LikeWhereInput;
   NOT?: LikeWhereInput[] | LikeWhereInput;
@@ -707,6 +787,22 @@ export interface CommentWhereInput {
   text_not_ends_with?: String;
   user?: UserWhereInput;
   post?: PostWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: CommentWhereInput[] | CommentWhereInput;
   OR?: CommentWhereInput[] | CommentWhereInput;
   NOT?: CommentWhereInput[] | CommentWhereInput;
@@ -733,6 +829,22 @@ export interface ChatWhereInput {
   messages_every?: MessageWhereInput;
   messages_some?: MessageWhereInput;
   messages_none?: MessageWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: ChatWhereInput[] | ChatWhereInput;
   OR?: ChatWhereInput[] | ChatWhereInput;
   NOT?: ChatWhereInput[] | ChatWhereInput;
@@ -770,6 +882,22 @@ export interface MessageWhereInput {
   from?: UserWhereInput;
   to?: UserWhereInput;
   chat?: ChatWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: MessageWhereInput[] | MessageWhereInput;
   OR?: MessageWhereInput[] | MessageWhereInput;
   NOT?: MessageWhereInput[] | MessageWhereInput;
@@ -812,6 +940,7 @@ export interface UserCreateManyWithoutChatsInput {
 }
 
 export interface UserCreateWithoutChatsInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -862,6 +991,7 @@ export interface UserCreateOneWithoutLikesInput {
 }
 
 export interface UserCreateWithoutLikesInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -904,6 +1034,7 @@ export interface UserCreateOneWithoutPostsInput {
 }
 
 export interface UserCreateWithoutPostsInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -955,6 +1086,7 @@ export interface UserCreateOneWithoutCommentsInput {
 }
 
 export interface UserCreateWithoutCommentsInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -974,6 +1106,7 @@ export interface UserCreateManyWithoutFollowingInput {
 }
 
 export interface UserCreateWithoutFollowingInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -1015,6 +1148,7 @@ export interface UserCreateOneInput {
 }
 
 export interface UserCreateInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -1035,6 +1169,7 @@ export interface UserCreateManyWithoutFollowersInput {
 }
 
 export interface UserCreateWithoutFollowersInput {
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
@@ -1077,6 +1212,7 @@ export interface UserUpdateWithWhereUniqueWithoutChatsInput {
 }
 
 export interface UserUpdateWithoutChatsDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1183,6 +1319,22 @@ export interface FileScalarWhereInput {
   url_not_starts_with?: String;
   url_ends_with?: String;
   url_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: FileScalarWhereInput[] | FileScalarWhereInput;
   OR?: FileScalarWhereInput[] | FileScalarWhereInput;
   NOT?: FileScalarWhereInput[] | FileScalarWhereInput;
@@ -1229,6 +1381,7 @@ export interface UserUpdateOneRequiredWithoutLikesInput {
 }
 
 export interface UserUpdateWithoutLikesDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1293,6 +1446,7 @@ export interface UserUpdateOneRequiredWithoutPostsInput {
 }
 
 export interface UserUpdateWithoutPostsDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1381,6 +1535,7 @@ export interface UserUpdateOneRequiredWithoutCommentsInput {
 }
 
 export interface UserUpdateWithoutCommentsDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1418,6 +1573,7 @@ export interface UserUpdateWithWhereUniqueWithoutFollowingInput {
 }
 
 export interface UserUpdateWithoutFollowingDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1494,6 +1650,7 @@ export interface UserUpdateOneRequiredInput {
 }
 
 export interface UserUpdateDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1532,6 +1689,7 @@ export interface UserUpdateWithWhereUniqueWithoutFollowersInput {
 }
 
 export interface UserUpdateWithoutFollowersDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1566,6 +1724,20 @@ export interface UserScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  avatar?: String;
+  avatar_not?: String;
+  avatar_in?: String[] | String;
+  avatar_not_in?: String[] | String;
+  avatar_lt?: String;
+  avatar_lte?: String;
+  avatar_gt?: String;
+  avatar_gte?: String;
+  avatar_contains?: String;
+  avatar_not_contains?: String;
+  avatar_starts_with?: String;
+  avatar_not_starts_with?: String;
+  avatar_ends_with?: String;
+  avatar_not_ends_with?: String;
   username?: String;
   username_not?: String;
   username_in?: String[] | String;
@@ -1650,6 +1822,22 @@ export interface UserScalarWhereInput {
   bio_not_starts_with?: String;
   bio_ends_with?: String;
   bio_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: UserScalarWhereInput[] | UserScalarWhereInput;
   OR?: UserScalarWhereInput[] | UserScalarWhereInput;
   NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
@@ -1661,6 +1849,7 @@ export interface UserUpdateManyWithWhereNestedInput {
 }
 
 export interface UserUpdateManyDataInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -1709,6 +1898,22 @@ export interface MessageScalarWhereInput {
   text_not_starts_with?: String;
   text_ends_with?: String;
   text_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: MessageScalarWhereInput[] | MessageScalarWhereInput;
   OR?: MessageScalarWhereInput[] | MessageScalarWhereInput;
   NOT?: MessageScalarWhereInput[] | MessageScalarWhereInput;
@@ -1744,6 +1949,22 @@ export interface ChatScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: ChatScalarWhereInput[] | ChatScalarWhereInput;
   OR?: ChatScalarWhereInput[] | ChatScalarWhereInput;
   NOT?: ChatScalarWhereInput[] | ChatScalarWhereInput;
@@ -1795,6 +2016,22 @@ export interface CommentScalarWhereInput {
   text_not_starts_with?: String;
   text_ends_with?: String;
   text_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: CommentScalarWhereInput[] | CommentScalarWhereInput;
   OR?: CommentScalarWhereInput[] | CommentScalarWhereInput;
   NOT?: CommentScalarWhereInput[] | CommentScalarWhereInput;
@@ -1835,6 +2072,22 @@ export interface LikeScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: LikeScalarWhereInput[] | LikeScalarWhereInput;
   OR?: LikeScalarWhereInput[] | LikeScalarWhereInput;
   NOT?: LikeScalarWhereInput[] | LikeScalarWhereInput;
@@ -1916,6 +2169,22 @@ export interface PostScalarWhereInput {
   caption_not_starts_with?: String;
   caption_ends_with?: String;
   caption_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: PostScalarWhereInput[] | PostScalarWhereInput;
   OR?: PostScalarWhereInput[] | PostScalarWhereInput;
   NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
@@ -2077,6 +2346,7 @@ export interface PostUpdateManyMutationInput {
 }
 
 export interface UserUpdateInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -2092,6 +2362,7 @@ export interface UserUpdateInput {
 }
 
 export interface UserUpdateManyMutationInput {
+  avatar?: String;
   username?: String;
   email?: String;
   loginSecret?: String;
@@ -2183,6 +2454,8 @@ export interface NodeNode {
 
 export interface Chat {
   id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface ChatPromise extends Promise<Chat>, Fragmentable {
@@ -2209,6 +2482,8 @@ export interface ChatPromise extends Promise<Chat>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface ChatSubscription
@@ -2237,20 +2512,26 @@ export interface ChatSubscription
       last?: Int;
     }
   ) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface User {
   id: ID_Output;
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  avatar: () => Promise<String>;
   username: () => Promise<String>;
   email: () => Promise<String>;
   loginSecret: () => Promise<String>;
@@ -2323,12 +2604,15 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  avatar: () => Promise<AsyncIterator<String>>;
   username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   loginSecret: () => Promise<AsyncIterator<String>>;
@@ -2401,12 +2685,16 @@ export interface UserSubscription
       last?: Int;
     }
   ) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface Post {
   id: ID_Output;
   location?: String;
   caption: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
@@ -2447,6 +2735,8 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface PostSubscription
@@ -2489,17 +2779,23 @@ export interface PostSubscription
       last?: Int;
     }
   ) => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface File {
   id: ID_Output;
   url: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface FilePromise extends Promise<File>, Fragmentable {
   id: () => Promise<ID_Output>;
   url: () => Promise<String>;
   post: <T = PostPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface FileSubscription
@@ -2508,16 +2804,22 @@ export interface FileSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   url: () => Promise<AsyncIterator<String>>;
   post: <T = PostSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface Like {
   id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface LikePromise extends Promise<Like>, Fragmentable {
   id: () => Promise<ID_Output>;
   user: <T = UserPromise>() => T;
   post: <T = PostPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface LikeSubscription
@@ -2526,11 +2828,15 @@ export interface LikeSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   user: <T = UserSubscription>() => T;
   post: <T = PostSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface Comment {
   id: ID_Output;
   text: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface CommentPromise extends Promise<Comment>, Fragmentable {
@@ -2538,6 +2844,8 @@ export interface CommentPromise extends Promise<Comment>, Fragmentable {
   text: () => Promise<String>;
   user: <T = UserPromise>() => T;
   post: <T = PostPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface CommentSubscription
@@ -2547,11 +2855,15 @@ export interface CommentSubscription
   text: () => Promise<AsyncIterator<String>>;
   user: <T = UserSubscription>() => T;
   post: <T = PostSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface Message {
   id: ID_Output;
   text: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface MessagePromise extends Promise<Message>, Fragmentable {
@@ -2560,6 +2872,8 @@ export interface MessagePromise extends Promise<Message>, Fragmentable {
   from: <T = UserPromise>() => T;
   to: <T = UserPromise>() => T;
   chat: <T = ChatPromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface MessageSubscription
@@ -2570,6 +2884,8 @@ export interface MessageSubscription
   from: <T = UserSubscription>() => T;
   to: <T = UserSubscription>() => T;
   chat: <T = ChatSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ChatConnection {
@@ -3016,18 +3332,24 @@ export interface ChatSubscriptionPayloadSubscription
 
 export interface ChatPreviousValues {
   id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface ChatPreviousValuesPromise
   extends Promise<ChatPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface ChatPreviousValuesSubscription
   extends Promise<AsyncIterator<ChatPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface CommentSubscriptionPayload {
@@ -3058,6 +3380,8 @@ export interface CommentSubscriptionPayloadSubscription
 export interface CommentPreviousValues {
   id: ID_Output;
   text: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface CommentPreviousValuesPromise
@@ -3065,6 +3389,8 @@ export interface CommentPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   text: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface CommentPreviousValuesSubscription
@@ -3072,6 +3398,8 @@ export interface CommentPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   text: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface FileSubscriptionPayload {
@@ -3102,6 +3430,8 @@ export interface FileSubscriptionPayloadSubscription
 export interface FilePreviousValues {
   id: ID_Output;
   url: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface FilePreviousValuesPromise
@@ -3109,6 +3439,8 @@ export interface FilePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   url: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface FilePreviousValuesSubscription
@@ -3116,6 +3448,8 @@ export interface FilePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   url: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface LikeSubscriptionPayload {
@@ -3145,18 +3479,24 @@ export interface LikeSubscriptionPayloadSubscription
 
 export interface LikePreviousValues {
   id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface LikePreviousValuesPromise
   extends Promise<LikePreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface LikePreviousValuesSubscription
   extends Promise<AsyncIterator<LikePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface MessageSubscriptionPayload {
@@ -3187,6 +3527,8 @@ export interface MessageSubscriptionPayloadSubscription
 export interface MessagePreviousValues {
   id: ID_Output;
   text: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface MessagePreviousValuesPromise
@@ -3194,6 +3536,8 @@ export interface MessagePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   text: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface MessagePreviousValuesSubscription
@@ -3201,6 +3545,8 @@ export interface MessagePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   text: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface PostSubscriptionPayload {
@@ -3232,6 +3578,8 @@ export interface PostPreviousValues {
   id: ID_Output;
   location?: String;
   caption: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface PostPreviousValuesPromise
@@ -3240,6 +3588,8 @@ export interface PostPreviousValuesPromise
   id: () => Promise<ID_Output>;
   location: () => Promise<String>;
   caption: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface PostPreviousValuesSubscription
@@ -3248,6 +3598,8 @@ export interface PostPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   location: () => Promise<AsyncIterator<String>>;
   caption: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -3277,36 +3629,45 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  avatar?: String;
   username: String;
   email: String;
   loginSecret?: String;
   firstName: String;
   lastName: String;
   bio?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  avatar: () => Promise<String>;
   username: () => Promise<String>;
   email: () => Promise<String>;
   loginSecret: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   bio: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  avatar: () => Promise<AsyncIterator<String>>;
   username: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   loginSecret: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 /*
@@ -3319,6 +3680,16 @@ export type ID_Output = string;
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
 export type String = string;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 

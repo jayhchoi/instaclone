@@ -1,0 +1,12 @@
+type Subscription {
+    message(where: MessageWhereInput!): MessageSubscriptionPayload!
+}
+
+input MessageWhereInput {
+    chatId: ID!
+}
+
+type MessageSubscriptionPayload {
+    mutation: MutationType!
+    node: Message
+}

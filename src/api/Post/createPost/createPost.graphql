@@ -1,0 +1,9 @@
+type Mutation {
+    createPost(data: CreatePostInput!): Post!
+}
+
+input CreatePostInput {
+  caption: String!
+  urls: [String!]!
+  location: String
+}

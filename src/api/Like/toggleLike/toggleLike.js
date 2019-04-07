@@ -3,14 +3,14 @@ import { prisma } from '../../../prisma/generated/prisma-client'
 
 export default {
   Mutation: {
-    toggleLike: async (_, { postId }, { user }) => {
-      isAuthenticated(user)
+    toggleLike: async (_, { postId }, { userId }) => {
+      isAuthenticated(userId)
       const like = await prisma.likes({
         where: {
           AND: [
             {
               user: {
-                id: user.id
+                id: userId
               }
             },
             {

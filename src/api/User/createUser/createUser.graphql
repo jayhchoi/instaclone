@@ -8,4 +8,5 @@ input CreateUserInput {
   firstName: String!
   lastName: String!
   bio: String
+  avatar: String
 }

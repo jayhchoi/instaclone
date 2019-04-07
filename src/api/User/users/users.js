@@ -2,7 +2,7 @@ import { prisma } from '../../../prisma/generated/prisma-client'
 
 export default {
   Query: {
-    allUsers: (_, { query }) => {
+    users: (_, { query }) => {
       const opArgs = {}
 
       if (query) {
@@ -13,6 +13,9 @@ export default {
             },
             {
               lastName_contains: query
+            },
+            {
+              username_contains: query
             }
           ]
         }

@@ -1,0 +1,9 @@
+type Query {
+    user(where: UserWhereUniqueInput!): User!
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  username: String
+  email: String
+}

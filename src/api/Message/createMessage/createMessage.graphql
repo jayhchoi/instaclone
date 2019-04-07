@@ -1,0 +1,9 @@
+type Mutation {
+    createMessage(data: MessageCreateInput!): Message!
+}
+
+input MessageCreateInput {
+    text: String!
+    toId: ID # Not required if chatId is given, since this is DM
+    chatId: ID # create new chat if not given
+}

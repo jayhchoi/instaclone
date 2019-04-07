@@ -1,3 +1,0 @@
-type Query {
-    userById(userId: ID!): User!
-}

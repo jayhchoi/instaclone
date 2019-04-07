@@ -1,52 +1,65 @@
 type User {
   id: ID! @unique
+  avatar: String
   username: String! @unique
   email: String! @unique
   loginSecret: String
   firstName: String!
   lastName: String!
   bio: String
-  posts: [Post!]!
-  comments: [Comment!]!
-  likes: [Like!]!
+  posts: [Post!]! @relation(name: "PostsToUser" onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentsToUser" onDelete: CASCADE)
+  likes: [Like!]! @relation(name: "LikesToUser" onDelete: CASCADE)
   followers: [User!]! @relation(name: "FollowRelation")
   following: [User!]! @relation(name: "FollowRelation")
   chats: [Chat!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Post {
   id: ID! @unique
-  files: [File!]!
-  user: User!
+  files: [File!]! @relation(name: "FilesToPost" onDelete: CASCADE)
+  user: User! @relation(name: "PostsToUser")
   location: String
   caption: String!
-  likes: [Like!]!
-  comments: [Comment!]!
+  likes: [Like!]! @relation(name: "LikestoPost" onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentsToPost" onDelete: CASCADE)
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Like {
   id: ID! @unique
-  user: User!
-  post: Post!
+  user: User! @relation(name: "LikesToUser")
+  post: Post! @relation(name: "LikestoPost")
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type File {
   id: ID! @unique
   url: String!
-  post: Post!
+  post: Post! @relation(name: "FilesToPost")
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Comment {
   id: ID! @unique
   text: String!
-  user: User!
-  post: Post!
+  user: User! @relation(name: "CommentsToUser")
+  post: Post! @relation(name: "CommentsToPost")
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Chat {
   id: ID! @unique
   participants: [User!]!
-  messages: [Message!]!
+  messages: [Message!]! @relation(name: "MessagesToChat" onDelete:CASCADE)
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Message {
@@ -54,5 +67,7 @@ type Message {
   text: String!
   from: User! @relation(name: "MessageFrom")
   to: User! @relation(name: "MessageTo")
-  chat: Chat!
+  chat: Chat! @relation(name: "MessagesToChat")
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
