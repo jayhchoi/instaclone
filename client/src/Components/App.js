@@ -1,9 +1,12 @@
-import React, { Component } from './node_modules/react'
+import React from './node_modules/react'
+import GlobalStyles from '../Styles/GlobalStyles'
+import { ThemeProvider } from 'styled-components'
+import theme from '../Styles/Theme'
 
-class App extends Component {
-  render() {
-    return <div className="App">App</div>
-  }
-}
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <GlobalStyles />
+  </ThemeProvider>
+)
 
 export default App
