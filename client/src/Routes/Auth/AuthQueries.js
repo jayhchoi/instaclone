@@ -21,3 +21,20 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const LOGIN_USER = gql`
+  mutation loginUser($secret: String!, $email: String!) {
+    loginUser(secret: $secret, email: $email) {
+      token
+      user {
+        fullName
+      }
+    }
+  }
+`
+
+export const AUTHENTICATE_USER = gql`
+  mutation authenticateUser($token: String!) {
+    authenticateUser(token: $token) @client
+  }
+`

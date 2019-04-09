@@ -52,6 +52,10 @@ const Button = styled.button`
   border: none;
   text-decoration: none;
   border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const Break = styled.div`
@@ -104,7 +108,35 @@ const GreyText = styled.span`
   padding: 0 1rem;
 `
 
-export const LoginPresenter = ({ setShowLogin, onLogin, email }) => (
+export const ConfirmPresenter = ({ setDisplay, onConfirm, secret }) => (
+  <BoxWrapper>
+    <Box>
+      <Heading>Instagram</Heading>
+      <Content>
+        <form onSubmit={onConfirm}>
+          <Input {...secret} />
+          <Button>확인</Button>
+        </form>
+        <Break>
+          <BreakLine />
+          <BreakWord>또는</BreakWord>
+          <BreakLine />
+        </Break>
+        <StyledLink to="/">비밀번호를 잊으셨나요?</StyledLink>
+      </Content>
+    </Box>
+    <Box>
+      <Content>
+        <GreyText>계정이 없으신가요?</GreyText>
+        <StyledLink as="button" onClick={() => setDisplay('SIGNUP')}>
+          가입하기
+        </StyledLink>
+      </Content>
+    </Box>
+  </BoxWrapper>
+)
+
+export const LoginPresenter = ({ setDisplay, onLogin, email }) => (
   <BoxWrapper>
     <Box>
       <Heading>Instagram</Heading>
@@ -124,7 +156,7 @@ export const LoginPresenter = ({ setShowLogin, onLogin, email }) => (
     <Box>
       <Content>
         <GreyText>계정이 없으신가요?</GreyText>
-        <StyledLink as="button" onClick={() => setShowLogin(false)}>
+        <StyledLink as="button" onClick={() => setDisplay('SIGNUP')}>
           가입하기
         </StyledLink>
       </Content>
@@ -133,7 +165,7 @@ export const LoginPresenter = ({ setShowLogin, onLogin, email }) => (
 )
 
 export const SignupPresenter = ({
-  setShowLogin,
+  setDisplay,
   email,
   username,
   firstName,
@@ -163,7 +195,7 @@ export const SignupPresenter = ({
     <Box>
       <Content>
         <GreyText>계정이 있으신가요?</GreyText>
-        <StyledLink as="button" onClick={() => setShowLogin(true)}>
+        <StyledLink as="button" onClick={() => setDisplay('LOGIN')}>
           로그인
         </StyledLink>
       </Content>

@@ -24,7 +24,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        <Router isAuthenticated={!isAuthenticated} />
+        <Router isAuthenticated={isAuthenticated} />
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
       </>
     </ThemeProvider>
