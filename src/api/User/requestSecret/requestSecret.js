@@ -25,7 +25,7 @@ export default {
         console.log(error)
         return {
           mailSent: false,
-          user
+          user: null
         }
       }
     }

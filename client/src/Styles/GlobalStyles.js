@@ -9,4 +9,19 @@ export default createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+    background-color: ${props => props.theme.greyColor};
+    color: ${props => props.theme.blackColor};
+  }
+
+  a {
+    color: ${props => props.theme.blueColor};
+    text-decoration: none;
+  }
 `

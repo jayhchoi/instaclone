@@ -1,5 +1,5 @@
 type Mutation {
-    createUser(data: CreateUserInput!): User!
+    createUser(data: CreateUserInput!): CreateUserPayload!
 }
 
 input CreateUserInput {
@@ -9,4 +9,9 @@ input CreateUserInput {
   lastName: String!
   bio: String
   avatar: String
+}
+
+type CreateUserPayload {
+  created: Boolean!
+  user: User
 }
