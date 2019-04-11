@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Input from '../../Components/Input'
 
 const Wrapper = styled.div`
-  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;

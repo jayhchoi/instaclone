@@ -22,13 +22,13 @@ type User {
 type Post {
   id: ID!
   user: User!
-  location: String
   caption: String!
   files: [File!]!
   likes: [Like!]!
   likeCounts: Int!
   comments: [Comment!]!
   isLiked: Boolean!
+  location: String
   createdAt: String!
   updatedAt: String!
 }
