@@ -31,7 +31,7 @@ export default {
         await prisma.createLike({
           user: {
             connect: {
-              id: user.id
+              id: userId
             }
           },
           post: {

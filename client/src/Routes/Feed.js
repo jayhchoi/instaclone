@@ -48,7 +48,6 @@ const Feed = () => {
     loading,
     error
   } = useQuery(FEEDS)
-  console.log(posts)
 
   if (loading)
     return (
@@ -58,7 +57,6 @@ const Feed = () => {
     )
 
   if (error) return <div>{error.message}</div>
-
   if (!loading && posts)
     return (
       <Wrapper>
