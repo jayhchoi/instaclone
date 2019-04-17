@@ -4,7 +4,7 @@ import Auth from './Routes/Auth'
 import Feed from './Routes/Feed'
 import Explore from './Routes/Explore'
 import Profile from './Routes/Profile'
-import Search from './Routes/Search'
+import Search from './Routes/Search/Search'
 
 const PrivateRoutes = () => (
   <Switch>

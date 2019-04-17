@@ -8,6 +8,12 @@ export default {
     comments: parent => {
       return prisma.post({ id: parent.id }).comments()
     },
+    commentCount: parent => {
+      return prisma
+        .commentsConnection({ where: { post: { id: parent.id } } })
+        .aggregate()
+        .count()
+    },
     likes: parent => {
       return prisma.post({ id: parent.id }).likes()
     },
