@@ -11,20 +11,25 @@ const Post = ({
   location,
   caption,
   createdAt,
-  likeCounts,
+  likeCount,
   isLiked,
   user,
   files,
   comments
 }) => {
-  const [isLikedState, setIsLiked] = useState(isLiked)
-  const [likeCountsState, setLikeCounts] = useState(likeCounts)
+  // STATES
+  const [isLikedState, setIsLikedState] = useState(isLiked)
+  const [likeCountState, setLikeCountState] = useState(likeCount)
+  const [commentsState, setCommentsState] = useState(comments)
   const [currentItem, setCurrentItem] = useState(0)
+
+  // INPUTS
   const commentInput = useInput({
     name: 'comment',
     placeholder: '댓글을 추가하세요...'
   })
 
+  // MUTATIONS
   const toggleLikeMutation = useMutation(TOGGLE_LIKE, {
     variables: { postId: id }
   })
@@ -32,6 +37,7 @@ const Post = ({
     variables: { postId: id, text: commentInput.value }
   })
 
+  //
   const slide = () => {
     const totalFiles = files.length
     if (currentItem === totalFiles - 1) {
@@ -41,36 +47,44 @@ const Post = ({
     }
   }
 
-  const toggleLike = () => {
+  const onHeartClick = () => {
     toggleLikeMutation()
-    setIsLiked(!isLikedState)
-    setLikeCounts(!isLikedState ? likeCountsState + 1 : likeCountsState - 1)
+    setIsLikedState(!isLikedState)
+    setLikeCountState(!isLikedState ? likeCountState + 1 : likeCountState - 1)
   }
 
-  const createComment = () => {}
+  const onCommentEnter = async e => {
+    const { which } = e
+    if (which === 13) {
+      e.preventDefault()
+      commentInput.reset()
+      const {
+        data: { createComment: newComment }
+      } = await createCommentMutation()
+      setCommentsState([...commentsState, newComment])
+    }
+  }
 
+  // NEEDS REVIEW HERE...
   useEffect(() => {
     slide()
   }, [currentItem])
 
   return (
     <PostPresenter
-      id={id}
       location={location}
       caption={caption}
       createdAt={createdAt}
       user={user}
       files={files}
-      comments={comments}
       ///////////////////////
-      likeCounts={likeCountsState}
+      comments={commentsState}
+      likeCount={likeCountState}
       isLiked={isLikedState}
       commentInput={commentInput}
-      setIsLiked={setIsLiked}
-      setLikeCounts={setLikeCounts}
       currentItem={currentItem}
-      toggleLike={toggleLike}
-      createComment={createComment}
+      onHeartClick={onHeartClick}
+      onCommentEnter={onCommentEnter}
     />
   )
 }
@@ -80,7 +94,7 @@ Post.propTypes = {
   location: PropTypes.string,
   caption: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  likeCounts: PropTypes.number.isRequired,
+  likeCount: PropTypes.number.isRequired,
   isLiked: PropTypes.bool.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,

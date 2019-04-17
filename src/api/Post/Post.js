@@ -11,7 +11,7 @@ export default {
     likes: parent => {
       return prisma.post({ id: parent.id }).likes()
     },
-    likeCounts: parent => {
+    likeCount: parent => {
       return prisma
         .likesConnection({ where: { post: { id: parent.id } } })
         .aggregate()

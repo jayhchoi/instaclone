@@ -12,9 +12,9 @@ export const CREATE_COMMENT = gql`
       id
       text
       user {
-        fullname
+        id
+        username
       }
-      createdAt
     }
   }
 `

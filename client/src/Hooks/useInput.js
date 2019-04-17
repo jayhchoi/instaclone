@@ -9,7 +9,11 @@ const useInput = ({ defaultValue = '', type = 'text', name, placeholder }) => {
     setValue(value)
   }
 
-  return { type, name, placeholder, value, onChange }
+  const reset = () => {
+    setValue(defaultValue)
+  }
+
+  return { type, name, placeholder, value, onChange, reset }
 }
 
 useInput.propTypes = {

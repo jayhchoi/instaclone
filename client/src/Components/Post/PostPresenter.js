@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import TextareaAutosize from 'react-autosize-textarea'
+import Moment from 'react-moment'
 import FatText from '../FatText'
 import Avatar from '../Avatar'
 import { HeartFull, HeartEmpty, Comment as CommentIcon } from '../Icons'
@@ -112,20 +113,18 @@ const Caption = styled.div`
 `
 
 const PostPresenter = ({
-  id,
   location,
   caption,
   createdAt,
-  likeCounts,
+  likeCount,
   isLiked,
   user: { username, avatar },
   files,
   comments,
   commentInput,
   currentItem,
-  toggleLike,
-  selfComments,
-  onKeyPress
+  onHeartClick,
+  onCommentEnter
 }) => {
   return (
     <Post>
@@ -150,18 +149,18 @@ const PostPresenter = ({
       </Files>
       <Meta>
         <Buttons>
-          <Button onClick={toggleLike}>
+          <Button onClick={onHeartClick}>
             {isLiked ? <HeartFull /> : <HeartEmpty />}
           </Button>
           <Button>
             <CommentIcon />
           </Button>
         </Buttons>
-        <FatText text={likeCounts === 1 ? '1 like' : `${likeCounts} likes`} />
+        <FatText text={likeCount === 1 ? '1 like' : `${likeCount} likes`} />
         <Caption>
           <FatText text={username} /> {caption}
         </Caption>
-        {comments.length !== 0 && (
+        {comments && comments.length > 0 && (
           <Comments>
             {comments.map(comment => (
               <Comment key={comment.id}>
@@ -169,17 +168,13 @@ const PostPresenter = ({
                 {comment.text}
               </Comment>
             ))}
-            {selfComments.map(comment => (
-              <Comment key={comment.id}>
-                <FatText text={comment.user.username} />
-                {comment.text}
-              </Comment>
-            ))}
           </Comments>
         )}
-        <Timestamp>{createdAt}</Timestamp>
+        <Timestamp>
+          <Moment format="MM월 DD일 HH:mm">{createdAt}</Moment>
+        </Timestamp>
         <Textarea
-          onKeyPress={onKeyPress}
+          onKeyPress={onCommentEnter}
           placeholder={commentInput.placeholder}
           value={commentInput.value}
           onChange={commentInput.onChange}

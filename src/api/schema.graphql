@@ -25,7 +25,7 @@ type Post {
   caption: String!
   files: [File!]!
   likes: [Like!]!
-  likeCounts: Int!
+  likeCount: Int!
   comments: [Comment!]!
   isLiked: Boolean!
   location: String

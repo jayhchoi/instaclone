@@ -5,7 +5,7 @@ export default {
   Mutation: {
     toggleLike: async (_, { postId }, { userId }) => {
       isAuthenticated(userId)
-      const like = await prisma.likes({
+      const [like] = await prisma.likes({
         where: {
           AND: [
             {
@@ -22,9 +22,9 @@ export default {
         }
       })
 
-      if (like.length > 0) {
+      if (like) {
         await prisma.deleteLike({
-          id: like[0].id
+          id: like.id
         })
         return false
       } else {

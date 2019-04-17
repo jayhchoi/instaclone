@@ -19,7 +19,7 @@ const FEEDS = gql`
       location
       caption
       createdAt
-      likeCounts
+      likeCount
       isLiked
       user {
         id
@@ -67,7 +67,7 @@ const Feed = () => {
             location={post.location}
             caption={post.caption}
             createdAt={post.createdAt}
-            likeCounts={post.likeCounts}
+            likeCount={post.likeCount}
             isLiked={post.isLiked}
             user={post.user}
             files={post.files}
