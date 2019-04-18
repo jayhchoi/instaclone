@@ -34,4 +34,4 @@ export const sendSecretMail = (adress, secret) => {
 }
 
 export const generateToken = userId =>
-  jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '12h' })
+  jwt.sign({ id: userId }, process.env.JWT_SECRET) // { expiresIn: '12h' }

@@ -10,8 +10,8 @@ export default {
   borderRadius: '4px',
   maxWidth: '900px',
   whiteBox: `
-    border: '1px solid #e6e6e6';
-    border-radius: '4px';
-    background-color:white;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    background-color: white;
   `
 }

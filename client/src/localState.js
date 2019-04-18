@@ -1,5 +1,16 @@
+import jwt from 'jsonwebtoken'
+
 export const defaults = {
-  isAuthenticated: localStorage.getItem('token') ? true : false
+  isAuthenticated:
+    localStorage.getItem('token') &&
+    jwt.verify(
+      localStorage.getItem('token'),
+      process.env.REACT_APP_JWT_SECRET,
+      err => {
+        if (err) return false
+        return true
+      }
+    )
 }
 
 export const resolvers = {

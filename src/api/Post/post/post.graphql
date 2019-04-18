@@ -1,7 +1,3 @@
 type Query {
-    post(where: PostWhereUniqueInput!): Post!
-}
-
-input PostWhereUniqueInput {
-    id: ID
+    post(postId: ID!): Post!
 }

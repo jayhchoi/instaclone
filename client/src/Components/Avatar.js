@@ -5,17 +5,19 @@ import PropTypes from 'prop-types'
 const getSize = size => {
   let number
   if (size === 'sm') {
-    number = 3
+    number = '3rem'
   } else if (size === 'md') {
-    number = 5
+    number = '5rem'
   } else if (size === 'lg') {
-    number = 15
+    number = '15rem'
+  } else if (size === 'auto') {
+    number = '40%'
   } else {
     number = 5
   }
   return `
-        width: ${number}rem;
-        height: ${number}rem;
+        width: ${number};
+        height: ${number};
         `
 }
 
@@ -33,7 +35,7 @@ const Avatar = ({
 }) => <Container size={size} url={url} {...props} />
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'auto']),
   url: PropTypes.string
 }
 

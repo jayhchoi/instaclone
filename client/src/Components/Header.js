@@ -80,6 +80,7 @@ const Header = ({ history }) => {
   const onSearchSubmit = e => {
     e.preventDefault()
     history.push(`/search?query=${search.value}`)
+    search.reset()
   }
 
   return (
