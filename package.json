@@ -1,41 +1,44 @@
 {
-  "name": "instaclone",
-  "version": "1.0.0",
-  "description": "Instagram clone with Express, Prisma, React and React Native",
-  "scripts": {
-    "dev": "env-cmd .env nodemon --ext js,graphql --exec babel-node src/server.js",
-    "prisma-generate": "env-cmd .env prisma generate",
-    "prisma-deploy": "env-cmd .env prisma deploy",
-    "prisma": "npm run prisma-deploy && npm run prisma-generate"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jayhchoi/instaclone.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jayhchoi/instaclone/issues"
-  },
-  "homepage": "https://github.com/jayhchoi/instaclone#readme",
-  "dependencies": {
-    "env-cmd": "^8.0.2",
-    "graphql-tools": "^4.0.4",
-    "graphql-yoga": "^1.17.4",
-    "jsonwebtoken": "^8.5.1",
-    "merge-graphql-schemas": "^1.5.8",
-    "morgan": "^1.9.1",
-    "nodemailer": "^6.0.0",
-    "nodemailer-sendgrid-transport": "^0.2.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "prisma-client-lib": "^1.29.2"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.4.2",
-    "nodemon": "^1.18.10"
-  }
+	"name": "instaclone",
+	"version": "1.0.0",
+	"description": "Instagram clone with Express, Prisma, React and React Native",
+	"scripts": {
+		"server": "env-cmd .env nodemon --ext js,graphql --exec babel-node src/server.js",
+		"client": "npm run start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"prisma-generate": "env-cmd .env prisma generate",
+		"prisma-deploy": "env-cmd .env prisma deploy",
+		"prisma": "npm run prisma-deploy && npm run prisma-generate"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jayhchoi/instaclone.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jayhchoi/instaclone/issues"
+	},
+	"homepage": "https://github.com/jayhchoi/instaclone#readme",
+	"dependencies": {
+		"env-cmd": "^8.0.2",
+		"graphql-tools": "^4.0.4",
+		"graphql-yoga": "^1.17.4",
+		"jsonwebtoken": "^8.5.1",
+		"merge-graphql-schemas": "^1.5.8",
+		"morgan": "^1.9.1",
+		"nodemailer": "^6.0.0",
+		"nodemailer-sendgrid-transport": "^0.2.0",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
+		"prisma-client-lib": "^1.29.2"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.2.3",
+		"@babel/core": "^7.4.0",
+		"@babel/node": "^7.2.2",
+		"@babel/preset-env": "^7.4.2",
+		"concurrently": "^4.1.0",
+		"nodemon": "^1.18.10"
+	}
 }
