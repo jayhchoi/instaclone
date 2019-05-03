@@ -8,42 +8,38 @@ import FatText from './FatText'
 import FollowButton from './FollowButton'
 
 const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  ${props => props.theme.whiteBox}
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+	${props => props.theme.whiteBox}
 `
 
 const StyledAvatar = styled(Avatar)`
-  margin-bottom: 1.5rem;
+	margin-bottom: 1.5rem;
 `
 
 const StyledLink = styled(Link)`
-  color: inherit;
-  margin-bottom: 1rem;
+	color: inherit;
+	margin-bottom: 1rem;
 `
 
 const UserCard = ({ username, avatar, id, isFollowed, isMe }) => (
-  <Card>
-    {avatar ? (
-      <StyledAvatar size="auto" url={avatar} />
-    ) : (
-      <StyledAvatar size="auto" />
-    )}
-    <StyledLink to={`/${username}`}>
-      <FatText text={username} />
-    </StyledLink>
-    {!isMe && <FollowButton isFollowed={isFollowed} followingId={id} />}
-  </Card>
+	<Card>
+		{avatar ? <StyledAvatar size="auto" url={avatar} /> : <StyledAvatar size="auto" />}
+		<StyledLink to={`/profile/${username}`}>
+			<FatText>{username}</FatText>
+		</StyledLink>
+		{!isMe && <FollowButton isFollowed={isFollowed} followingId={id} />}
+	</Card>
 )
 
 UserCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  isFollowed: PropTypes.bool.isRequired,
-  isMe: PropTypes.bool.isRequired
+	id: PropTypes.string.isRequired,
+	username: PropTypes.string.isRequired,
+	avatar: PropTypes.string.isRequired,
+	isFollowed: PropTypes.bool.isRequired,
+	isMe: PropTypes.bool.isRequired
 }
 
 export default UserCard

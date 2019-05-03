@@ -1,85 +1,87 @@
 type User {
-  id: ID!
-  avatar: String
-  username: String!
-  email: String!
-  firstName: String!
-  lastName: String!
-  fullName: String!
-  bio: String
-  posts: [Post!]!
-  comments: [Comment!]!
-  likes: [Like!]!
-  followers: [User!]!
-  following: [User!]!
-  chats: [Chat!]!
-  isFollowed: Boolean!
-  isMe: Boolean!
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	avatar: String
+	username: String!
+	email: String!
+	firstName: String!
+	lastName: String!
+	fullName: String!
+	bio: String
+	posts: [Post!]!
+	comments: [Comment!]!
+	likes: [Like!]!
+	followers: [User!]!
+	following: [User!]!
+	chats: [Chat!]!
+	isFollowed: Boolean!
+	isMe: Boolean!
+	postsCount: Int!
+	followersCount: Int!
+	followingCount: Int!
+	createdAt: String!
+	updatedAt: String!
 }
 
 type Post {
-  id: ID!
-  user: User!
-  caption: String!
-  files: [File!]!
-  likes: [Like!]!
-  likeCount: Int!
-  commentCount: Int!
-  comments: [Comment!]!
-  isLiked: Boolean!
-  location: String
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	user: User!
+	caption: String!
+	files: [File!]!
+	likes: [Like!]!
+	likesCount: Int!
+	commentsCount: Int!
+	comments: [Comment!]!
+	isLiked: Boolean!
+	location: String
+	createdAt: String!
+	updatedAt: String!
 }
 
 type Comment {
-  id: ID!
-  text: String!
-  user: User!
-  post: Post!
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	text: String!
+	user: User!
+	post: Post!
+	createdAt: String!
+	updatedAt: String!
 }
 
 type Like {
-  id: ID!
-  user: User!
-  post: Post!
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	user: User!
+	post: Post!
+	createdAt: String!
+	updatedAt: String!
 }
 
 type File {
-  id: ID!
-  url: String!
-  post: Post!
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	url: String!
+	post: Post!
+	createdAt: String!
+	updatedAt: String!
 }
 
-
 type Chat {
-  id: ID!
-  participants: [User!]!
-  messages: [Message!]!
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	participants: [User!]!
+	messages: [Message!]!
+	createdAt: String!
+	updatedAt: String!
 }
 
 type Message {
-  id: ID!
-  text: String!
-  from: User!
-  to: User!
-  chat: Chat!
-  createdAt: String!
-  updatedAt: String!
+	id: ID!
+	text: String!
+	from: User!
+	to: User!
+	chat: Chat!
+	createdAt: String!
+	updatedAt: String!
 }
 
 enum MutationType {
-    CREATED
-    UPDATED
-    DELETED
+	CREATED
+	UPDATED
+	DELETED
 }

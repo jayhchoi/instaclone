@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import useInput from '../../Hooks/useInput'
-
-import PostPresenter from './PostPresenter'
 import { useMutation } from 'react-apollo-hooks'
+
+import useInput from '../../Hooks/useInput'
+import PostPresenter from './PostPresenter'
 import { TOGGLE_LIKE, CREATE_COMMENT } from './PostQueries'
 import { FEEDS } from '../../queries'
 
-const Post = ({ id, location, caption, createdAt, likeCount, isLiked, user, files, comments }) => {
+const Post = ({ id, location, caption, createdAt, likesCount, isLiked, user, files, comments }) => {
 	// STATES
 	const [isLikedState, setIsLikedState] = useState(isLiked)
-	const [likeCountState, setLikeCountState] = useState(likeCount)
+	const [likesCountState, setlikesCountState] = useState(likesCount)
 	const [currentItem, setCurrentItem] = useState(0)
 
 	// INPUTS
 	const commentInput = useInput({
 		name: 'comment',
-		placeholder: '댓글을 추가하세요...'
+		placeholder: 'Add comment...'
 	})
 
 	// MUTATIONS
@@ -31,9 +31,9 @@ const Post = ({ id, location, caption, createdAt, likeCount, isLiked, user, file
 				if (p.id === id) {
 					p.isLiked = isLiked
 					if (isLiked) {
-						p.likeCount++
+						p.likesCount++
 					} else {
-						p.likeCount--
+						p.likesCount--
 					}
 				}
 				return p
@@ -47,6 +47,7 @@ const Post = ({ id, location, caption, createdAt, likeCount, isLiked, user, file
 			})
 		}
 	})
+
 	const createCommentMutation = useMutation(CREATE_COMMENT, {
 		variables: { postId: id, text: commentInput.value },
 		update: (cache, { data: { createComment: newComment } }) => {
@@ -73,7 +74,7 @@ const Post = ({ id, location, caption, createdAt, likeCount, isLiked, user, file
 	const onHeartClick = () => {
 		toggleLikeMutation()
 		setIsLikedState(!isLikedState)
-		setLikeCountState(!isLikedState ? likeCountState + 1 : likeCountState - 1)
+		setlikesCountState(!isLikedState ? likesCountState + 1 : likesCountState - 1)
 	}
 
 	const onCommentEnter = e => {
@@ -86,9 +87,9 @@ const Post = ({ id, location, caption, createdAt, likeCount, isLiked, user, file
 
 	// NEEDS REVIEW HERE...
 	useEffect(() => {
-		const totalFiles = files.length
+		const numOfFiles = files.length
 		let timer
-		if (currentItem === totalFiles - 1) {
+		if (currentItem === numOfFiles - 1) {
 			timer = setTimeout(() => setCurrentItem(0), 3000)
 		} else {
 			timer = setTimeout(() => setCurrentItem(currentItem + 1), 3000)
@@ -106,7 +107,7 @@ const Post = ({ id, location, caption, createdAt, likeCount, isLiked, user, file
 			files={files}
 			///////////////////////
 			comments={comments}
-			likeCount={likeCountState}
+			likesCount={likesCountState}
 			isLiked={isLikedState}
 			commentInput={commentInput}
 			currentItem={currentItem}
@@ -121,7 +122,7 @@ Post.propTypes = {
 	location: PropTypes.string,
 	caption: PropTypes.string.isRequired,
 	createdAt: PropTypes.string.isRequired,
-	likeCount: PropTypes.number.isRequired,
+	likesCount: PropTypes.number.isRequired,
 	isLiked: PropTypes.bool.isRequired,
 	user: PropTypes.shape({
 		id: PropTypes.string.isRequired,

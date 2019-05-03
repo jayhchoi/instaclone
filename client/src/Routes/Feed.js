@@ -38,7 +38,7 @@ const Feed = () => {
 						location={post.location}
 						caption={post.caption}
 						createdAt={post.createdAt}
-						likeCount={post.likeCount}
+						likesCount={post.likesCount}
 						isLiked={post.isLiked}
 						user={post.user}
 						files={post.files}

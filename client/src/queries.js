@@ -15,7 +15,7 @@ export const FEEDS = gql`
 			location
 			caption
 			createdAt
-			likeCount
+			likesCount
 			isLiked
 			user {
 				id
