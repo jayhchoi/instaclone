@@ -6,21 +6,20 @@ import styled from 'styled-components'
 import TextareaAutosize from 'react-autosize-textarea'
 import Moment from 'react-moment'
 
-import FatText from '../FatText'
-import Avatar from '../Avatar'
-import { HeartFull, HeartEmpty, Comment as CommentIcon } from '../Icons'
-import useInput from '../../Hooks/useInput'
-import { TOGGLE_LIKE, CREATE_COMMENT } from '../../queries/post'
-import { FEEDS } from '../../queries/post'
+import FatText from './FatText'
+import Avatar from './Avatar'
+import { HeartFull, HeartEmpty } from './Icons'
+import useInput from './../Hooks/useInput'
+import { TOGGLE_LIKE, CREATE_COMMENT } from './../queries/post'
+import { FEEDS, POST } from './../queries/post'
 
-const Post = ({
+const PostDetail = ({
 	post: {
 		id,
 		location,
 		caption,
 		createdAt,
 		likesCount,
-		commentsCount,
 		isLiked,
 		files,
 		comments,
@@ -42,26 +41,24 @@ const Post = ({
 	const toggleLikeMutation = useMutation(TOGGLE_LIKE, {
 		variables: { postId: id },
 		update: (cache, { data: { toggleLike: isLiked } }) => {
-			const { posts } = cache.readQuery({
-				query: FEEDS
+			const { post } = cache.readQuery({
+				query: POST,
+				variables: {
+					postId: id
+				}
 			})
 
-			const updatedPosts = posts.map(p => {
-				if (p.id === id) {
-					p.isLiked = isLiked
-					if (isLiked) {
-						p.likesCount++
-					} else {
-						p.likesCount--
-					}
-				}
-				return p
-			})
+			post.isLiked = isLiked
+			if (isLiked) post.likesCount++
+			if (!isLiked) post.liksCount--
 
 			cache.writeQuery({
-				query: FEEDS,
+				query: POST,
+				variables: {
+					postId: id
+				},
 				data: {
-					posts: updatedPosts
+					post
 				}
 			})
 		}
@@ -70,21 +67,22 @@ const Post = ({
 	const createCommentMutation = useMutation(CREATE_COMMENT, {
 		variables: { postId: id, text: commentInput.value },
 		update: (cache, { data: { createComment: newComment } }) => {
-			const { posts } = cache.readQuery({
-				query: FEEDS
+			const { post } = cache.readQuery({
+				query: POST,
+				variables: {
+					postId: id
+				}
 			})
 
-			const updatedPosts = posts.map(p => {
-				if (p.id === id) {
-					p.comments.push(newComment)
-				}
-				return p
-			})
+			post.comments.push(newComment)
 
 			cache.writeQuery({
-				query: FEEDS,
+				query: POST,
+				variables: {
+					postId: id
+				},
 				data: {
-					posts: updatedPosts
+					post
 				}
 			})
 		}
@@ -118,72 +116,77 @@ const Post = ({
 	}, [currentItem])
 
 	return (
-		<StyledPost>
-			<Header>
-				<Avatar size="sm" url={avatar} />
-				<UserColumn>
-					<Link to={`/profile/${username}`}>
-						<FatText>{username}</FatText>
-					</Link>
-					<Location>{location || 'Seoul, S.Korea'}</Location>
-				</UserColumn>
-			</Header>
-			<Files>
-				{files.length !== 0 &&
-					files.map((file, index) => (
-						<File key={file.id} src={file.url} showing={index === currentItem} />
-					))}
-			</Files>
-			<Meta>
-				<Buttons>
-					<Button onClick={onHeartClick}>{isLikedState ? <HeartFull /> : <HeartEmpty />}</Button>
-					<Button>
-						<Link to={`post/${id}`}>
-							<CommentIcon />
+		<PostContainer>
+			<PhotoColumn>
+				<Files>
+					{files.length !== 0 &&
+						files.map((file, index) => (
+							<File key={file.id} src={file.url} showing={index === currentItem} />
+						))}
+				</Files>
+			</PhotoColumn>
+			<MetaColumn>
+				<Header>
+					<Avatar size="sm" url={avatar} />
+					<UserColumn>
+						<Link to={`/profile/${username}`}>
+							<FatText>{username}</FatText>
 						</Link>
-					</Button>
-				</Buttons>
-				<FatText>{likesCountState === 1 ? '1 like' : `${likesCountState} likes`}</FatText>
-				<Caption>
-					<FatText>{username}</FatText> {caption}
-				</Caption>
-				{comments && comments.length > 0 && (
-					<>
-						{comments.length > 3 && (
-							<ViewAll to={`/post/${id}`}>{`View all ${commentsCount} comments...`}</ViewAll>
-						)}
+						<Location>{location || 'Seoul, S.Korea'}</Location>
+					</UserColumn>
+				</Header>
+				<MetaOne>
+					<Caption>
+						<FatText>{username}</FatText> {caption}
+					</Caption>
+					{comments && comments.length > 0 && (
 						<Comments>
-							{comments.slice(-3).map(comment => (
+							{comments.map(comment => (
 								<Comment key={comment.id}>
-									<FatText>{comment.user.username}</FatText>
-									{comment.text}
+									<CommentHeader>
+										<Avatar size="sm" url={avatar} />
+									</CommentHeader>
+									<CommentBody>
+										<Link to={`/profile/${comment.user.username}`}>
+											<FatText>{comment.user.username}</FatText>
+										</Link>
+										<CommentText>{comment.text}</CommentText>
+									</CommentBody>
 								</Comment>
 							))}
 						</Comments>
-					</>
-				)}
-				<Timestamp>
-					<Moment fromNow>{createdAt}</Moment>
-				</Timestamp>
-				<Textarea
-					onKeyPress={onCommentEnter}
-					placeholder={commentInput.placeholder}
-					value={commentInput.value}
-					onChange={commentInput.onChange}
-				/>
-			</Meta>
-		</StyledPost>
+					)}
+				</MetaOne>
+				<MetaTwo>
+					<Buttons>
+						<Button onClick={onHeartClick}>{isLikedState ? <HeartFull /> : <HeartEmpty />}</Button>
+					</Buttons>
+					<FatText>{likesCountState === 1 ? '1 like' : `${likesCountState} likes`}</FatText>
+
+					<Timestamp>
+						<Moment fromNow>{createdAt}</Moment>
+					</Timestamp>
+				</MetaTwo>
+				<MetaThree>
+					<Textarea
+						onKeyPress={onCommentEnter}
+						placeholder={commentInput.placeholder}
+						value={commentInput.value}
+						onChange={commentInput.onChange}
+					/>
+				</MetaThree>
+			</MetaColumn>
+		</PostContainer>
 	)
 }
 
-Post.propTypes = {
+PostDetail.propTypes = {
 	post: PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		location: PropTypes.string,
 		caption: PropTypes.string.isRequired,
 		createdAt: PropTypes.string.isRequired,
 		likesCount: PropTypes.number.isRequired,
-		commentsCount: PropTypes.number.isRequired,
 		isLiked: PropTypes.bool.isRequired,
 		user: PropTypes.shape({
 			id: PropTypes.string.isRequired,
@@ -209,19 +212,29 @@ Post.propTypes = {
 	}).isRequired
 }
 
-const StyledPost = styled.div`
+const PostContainer = styled.div`
+	display: flex;
 	${props => props.theme.preset.whiteBox};
 	width: 100%;
-	max-width: 60rem;
 	/* What is this??? */
 	user-select: none;
 	margin-bottom: 25px;
+	max-height: 60rem;
+`
+
+const PhotoColumn = styled.div`
+	width: 60%;
+`
+
+const MetaColumn = styled.div`
+	width: 40%;
 `
 
 const Header = styled.header`
 	padding: 1.5rem;
 	display: flex;
 	align-items: center;
+	border-bottom: ${({ theme }) => theme.preset.boxBorder};
 
 	a {
 		color: inherit;
@@ -266,7 +279,19 @@ const Button = styled.span`
 	cursor: pointer;
 `
 
-const Meta = styled.div`
+const MetaOne = styled.div`
+	max-height: 63%;
+	overflow: auto;
+	padding: 1rem;
+	border-bottom: ${({ theme }) => theme.preset.boxBorder};
+`
+
+const MetaTwo = styled.div`
+	padding: 1rem;
+	border-bottom: ${({ theme }) => theme.preset.boxBorder};
+`
+
+const MetaThree = styled.div`
 	padding: 15px;
 `
 
@@ -286,13 +311,6 @@ const Timestamp = styled.span`
 	display: block;
 	font-size: 1.2rem;
 	margin: 1rem 0;
-	padding-bottom: 1rem;
-	border-bottom: ${props => props.theme.color.lightGrey} 1px solid;
-`
-
-const ViewAll = styled(Link)`
-	color: ${({ theme }) => theme.color.darkGrey};
-	font-weight: 600;
 `
 
 const Textarea = styled(TextareaAutosize)`
@@ -314,13 +332,32 @@ const Comments = styled.ul`
 
 const Comment = styled.li`
 	margin-bottom: 0.7rem;
-	span {
-		margin-right: 0.5rem;
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+
+	a {
+		color: inherit;
 	}
+`
+
+const CommentHeader = styled.div`
+	width: 15%;
+	display: flex;
+	justify-content: center;
+`
+
+const CommentBody = styled.div`
+	width: 85%;
+`
+
+const CommentText = styled.span`
+	margin-left: 1rem;
+	word-wrap: break-word;
 `
 
 const Caption = styled.div`
 	margin: 1rem 0;
 `
 
-export default Post
+export default PostDetail

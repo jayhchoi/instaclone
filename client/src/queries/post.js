@@ -1,17 +1,5 @@
 import { gql } from 'apollo-boost'
-
-export const POST_FRAGMENTS = gql`
-	fragment postScalarFields on Post {
-		id
-		caption
-		likesCount
-		commentsCount
-		isLiked
-		location
-		createdAt
-		updatedAt
-	}
-`
+import { POST_FRAGMENTS, USER_FRAGMENTS } from './fragments'
 
 export const TOGGLE_LIKE = gql`
 	mutation toggleLike($postId: ID!) {
@@ -35,16 +23,9 @@ export const CREATE_COMMENT = gql`
 export const FEEDS = gql`
 	{
 		posts {
-			id
-			location
-			caption
-			createdAt
-			likesCount
-			isLiked
+			...postScalarFields
 			user {
-				id
-				avatar
-				username
+				...userScalarFields
 			}
 			files {
 				id
@@ -54,10 +35,35 @@ export const FEEDS = gql`
 				id
 				text
 				user {
-					id
-					username
+					...userScalarFields
 				}
 			}
 		}
 	}
+	${POST_FRAGMENTS}
+	${USER_FRAGMENTS}
+`
+
+export const POST = gql`
+	query Post($postId: ID!) {
+		post(postId: $postId) {
+			...postScalarFields
+			user {
+				...userScalarFields
+			}
+			files {
+				id
+				url
+			}
+			comments {
+				id
+				text
+				user {
+					...userScalarFields
+				}
+			}
+		}
+	}
+	${POST_FRAGMENTS}
+	${USER_FRAGMENTS}
 `

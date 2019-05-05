@@ -3,7 +3,8 @@ import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo-hooks'
 import styled from 'styled-components'
 import Loader from '../Components/Loader'
-import Post from '../Components/Post/Post'
+import PostDetail from '../Components/PostDetail'
+import { POST } from '../queries/post'
 
 const Wrapper = styled.div`
 	display: flex;
@@ -12,37 +13,7 @@ const Wrapper = styled.div`
 	min-height: 70vh;
 `
 
-const POST = gql`
-	query Post($postId: ID!) {
-		post(postId: $postId) {
-			id
-			location
-			caption
-			createdAt
-			likesCount
-			isLiked
-			user {
-				id
-				avatar
-				username
-			}
-			files {
-				id
-				url
-			}
-			comments {
-				id
-				text
-				user {
-					id
-					username
-				}
-			}
-		}
-	}
-`
-
-export default ({
+const Post = ({
 	match: {
 		params: { postId }
 	}
@@ -65,18 +36,9 @@ export default ({
 
 	return (
 		<Wrapper>
-			<Post
-				key={post.id}
-				id={post.id}
-				location={post.location}
-				caption={post.caption}
-				createdAt={post.createdAt}
-				likesCount={post.likesCount}
-				isLiked={post.isLiked}
-				user={post.user}
-				files={post.files}
-				comments={post.comments}
-			/>
+			<PostDetail key={post.id} post={post} />
 		</Wrapper>
 	)
 }
+
+export default Post

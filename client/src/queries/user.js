@@ -1,25 +1,5 @@
 import { gql } from 'apollo-boost'
-import { POST_FRAGMENTS } from './post'
-
-export const USER_FRAGMENTS = gql`
-	fragment userScalarFields on User {
-		id
-		avatar
-		username
-		email
-		firstName
-		lastName
-		fullName
-		bio
-		isFollowed
-		isMe
-		postsCount
-		followingCount
-		followersCount
-		createdAt
-		updatedAt
-	}
-`
+import { POST_FRAGMENTS, USER_FRAGMENTS } from './fragments'
 
 export const USER = gql`
 	query User($where: UserWhereUniqueInput!) {
@@ -34,8 +14,8 @@ export const USER = gql`
 			}
 		}
 	}
-	${USER_FRAGMENTS}
 	${POST_FRAGMENTS}
+	${USER_FRAGMENTS}
 `
 
 export const REQUEST_SECRET = gql`
