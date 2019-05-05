@@ -12,7 +12,7 @@ const Card = styled.div`
 	flex-direction: column;
 	align-items: center;
 	padding: 2rem;
-	${props => props.theme.whiteBox}
+	${props => props.theme.preset.whiteBox}
 `
 
 const StyledAvatar = styled(Avatar)`
@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
 	margin-bottom: 1rem;
 `
 
-const UserCard = ({ username, avatar, id, isFollowed, isMe }) => (
+const UserCard = ({ user: { username, avatar, id, isFollowed, isMe } }) => (
 	<Card>
 		{avatar ? <StyledAvatar size="auto" url={avatar} /> : <StyledAvatar size="auto" />}
 		<StyledLink to={`/profile/${username}`}>
@@ -35,11 +35,13 @@ const UserCard = ({ username, avatar, id, isFollowed, isMe }) => (
 )
 
 UserCard.propTypes = {
-	id: PropTypes.string.isRequired,
-	username: PropTypes.string.isRequired,
-	avatar: PropTypes.string.isRequired,
-	isFollowed: PropTypes.bool.isRequired,
-	isMe: PropTypes.bool.isRequired
+	user: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
+		avatar: PropTypes.string.isRequired,
+		isFollowed: PropTypes.bool.isRequired,
+		isMe: PropTypes.bool.isRequired
+	}).isRequired
 }
 
 export default UserCard

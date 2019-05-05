@@ -6,6 +6,7 @@ import useInput from '../Hooks/useInput'
 import { useQuery } from 'react-apollo-hooks'
 import { Compass, HeartEmpty, User, Logo } from './Icons'
 import { gql } from 'apollo-boost'
+import wordmark from '../assets/images/instagram_wordmark.png'
 
 export const ME = gql`
 	{
@@ -17,23 +18,24 @@ export const ME = gql`
 
 const StyledHeader = styled.header`
 	width: 100%;
+	height: ${({ theme }) => theme.size.navHeight};
 	border: 0;
 	position: fixed;
 	top: 0;
 	left: 0;
 	background-color: white;
-	border-bottom: ${props => props.theme.boxBorder};
+	border-bottom: ${props => props.theme.preset.boxBorder};
 	border-radius: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 2.5rem 3.5rem;
+	padding: 2rem 3rem;
 	z-index: 2;
 `
 
 const HeaderWrapper = styled.div`
 	width: 100%;
-	max-width: ${props => props.theme.maxWidth};
+	max-width: ${props => props.theme.size.maxWidth};
 	display: flex;
 	justify-content: center;
 `
@@ -51,8 +53,27 @@ const HeaderColumn = styled.div`
 	}
 `
 
+const Divider = styled.div`
+	display: inline-block;
+	background-color: ${({ theme }) => theme.color.black};
+	height: 2.7rem;
+	margin: 0 1.6rem;
+	width: 1px;
+`
+
+const Wordmark = styled.div`
+	display: inline-block;
+	margin-bottom: -0.5rem;
+	height: 2.7rem;
+	width: 10rem;
+	background-image: url(${wordmark});
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+`
+
 const SearchInput = styled(Input)`
-	background-color: ${props => props.theme.greyColor};
+	background-color: ${props => props.theme.color.grey};
 	padding: 0.5rem;
 	font-size: 1.4rem;
 	border-radius: 3px;
@@ -72,7 +93,7 @@ const HeaderLink = styled(Link)`
 `
 
 const Header = ({ history }) => {
-	const search = useInput({ name: 'query', placeholder: '사진을 검색하세요' })
+	const search = useInput({ name: 'query', placeholder: 'Search' })
 	const {
 		data: { me }
 	} = useQuery(ME)
@@ -89,6 +110,8 @@ const Header = ({ history }) => {
 				<HeaderColumn>
 					<Link to="/">
 						<Logo />
+						<Divider />
+						<Wordmark />
 					</Link>
 				</HeaderColumn>
 				<HeaderColumn>

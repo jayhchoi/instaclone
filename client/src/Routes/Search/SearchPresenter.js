@@ -52,31 +52,16 @@ const SearchPresenter = ({ query, loading, data }) => {
 				{data.users.length === 0 ? (
 					<FatText>No user found</FatText>
 				) : (
-					data.users.map(({ id, username, avatar, isFollowed, isMe }) => (
-						<UserCard
-							key={id}
-							id={id}
-							username={username}
-							avatar={avatar}
-							isFollowed={isFollowed}
-							isMe={isMe}
-						/>
-					))
+					data.users.map(user => <UserCard key={user.id} user={user} />)
 				)}
 			</UserSection>
 			<PostSection>
 				{data.posts.length === 0 ? (
 					<FatText>No post found</FatText>
 				) : (
-					data.posts.map(({ id, files, likesCount, commentsCount }) => (
-						<PostCard
-							key={id}
-							id={id}
-							file={files[0]}
-							likesCount={likesCount}
-							commentsCount={commentsCount}
-						/>
-					))
+					data.posts.map(post => {
+						return <PostCard key={post.id} post={post} />
+					})
 				)}
 			</PostSection>
 		</Wrapper>

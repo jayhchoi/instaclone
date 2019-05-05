@@ -82,3 +82,11 @@ export const LOGOUT_USER = gql`
 		logoutUser @client
 	}
 `
+
+export const ME = gql`
+	{
+		me {
+			username
+		}
+	}
+`

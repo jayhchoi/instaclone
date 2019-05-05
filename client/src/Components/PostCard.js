@@ -27,7 +27,7 @@ PostCard.propTypes = {
 		commentsCount: PropTypes.number.isRequired,
 		files: PropTypes.array.isRequired,
 		id: PropTypes.string.isRequired
-	})
+	}).isRequired
 }
 
 const Overlay = styled.div`

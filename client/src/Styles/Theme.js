@@ -1,17 +1,24 @@
 export default {
-  lightGreyColor: 'c7c7c7',
-  greyColor: '#fafafa',
-  darkGreyColor: '#999',
-  blackColor: '#262626',
-  blueColor: '#3897f0',
-  darkBlueColor: '#003569',
-  redColor: '#ed4956',
-  boxBorder: '1px solid #e6e6e6',
-  borderRadius: '4px',
-  maxWidth: '900px',
-  whiteBox: `
+	color: {
+		lightGrey: '#c7c7c7',
+		grey: '#fafafa',
+		darkGrey: '#999',
+		black: '#262626',
+		blue: '#3897f0',
+		darkBlue: '#003569',
+		red: '#ed4956'
+	},
+	size: {
+		borderRadius: '4px',
+		maxWidth: '1000px',
+		navHeight: '7.7rem'
+	},
+	preset: {
+		boxBorder: '1px solid #e6e6e6',
+		whiteBox: `
     border: 1px solid #e6e6e6;
     border-radius: 4px;
     background-color: white;
   `
+	}
 }
