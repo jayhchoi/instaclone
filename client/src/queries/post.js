@@ -20,6 +20,26 @@ export const CREATE_COMMENT = gql`
 	}
 `
 
+export const SEARCH = gql`
+	query Search($query: String!) {
+		posts(query: $query) {
+			id
+			files {
+				url
+			}
+			likesCount
+			commentsCount
+		}
+		users(query: $query) {
+			id
+			username
+			avatar
+			isFollowed
+			isMe
+		}
+	}
+`
+
 export const FEEDS = gql`
 	{
 		posts {

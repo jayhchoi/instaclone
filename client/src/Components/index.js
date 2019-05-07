@@ -1,6 +1,6 @@
 export { default as Avatar } from './Avatar'
 export { default as Button } from './Button'
-export { default as FatText } from './FatText'
+export { default as FatText } from '../styledComponents/Text'
 export { default as FollowButton } from './FollowButton'
 export { default as Footer } from './Footer'
 export { default as Header } from './Header'

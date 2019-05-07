@@ -2,9 +2,9 @@ import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo-hooks'
 import styled from 'styled-components'
-import Loader from '../Components/Loader'
-import PostDetail from '../Components/PostDetail'
-import { POST } from '../queries/post'
+import Loader from '../../components/Loader'
+import PostDetail from '../../components/PostDetail'
+import { POST } from '../../queries/post'
 
 const Wrapper = styled.div`
 	display: flex;

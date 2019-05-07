@@ -1,11 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import Feed from './Routes/Feed'
-import Explore from './Routes/Explore'
-import Profile from './Routes/Profile'
-import Search from './Routes/Search/Search'
-import Post from './Routes/Post'
+import { Feed, Explore, Profile, Search, Post } from '../routes'
 
 const Router = () => (
 	<Switch>

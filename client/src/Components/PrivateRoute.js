@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import useAuthContext from '../Hooks/useAuthContext'
+import useAuthContext from '../hooks/useAuthContext'
 
 const PrivateRoute = ({
 	component: Component, // receive component prop and call it Component

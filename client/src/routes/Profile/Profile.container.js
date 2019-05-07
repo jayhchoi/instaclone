@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { useQuery, useMutation } from 'react-apollo-hooks'
 import Helmet from 'react-helmet'
 
-import { USER, LOGOUT_USER } from '../queries/user'
-import { PostCard, Loader, Avatar, FatText, Button, FollowButton, Wrapper } from '../Components'
+import { USER, LOGOUT_USER } from '../../queries/user'
+import { PostCard, Loader, Avatar, FatText, Button, FollowButton, Wrapper } from '../../components'
 
 function Profile({
 	match: {

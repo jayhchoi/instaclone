@@ -7,12 +7,12 @@ import styled, { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import AuthContext from '../context/AuthContext'
-import GlobalStyles from '../Styles/GlobalStyles'
-import theme from '../Styles/Theme'
-import Routes from '../Routes'
-import Footer from '../Components/Footer'
-import Header from '../Components/Header'
-import Auth from '../Routes/Auth'
+import GlobalStyles from '../styles/GlobalStyles'
+import theme from '../styles/theme'
+import Routes from './Routes'
+import Footer from './Footer'
+import Header from './Header'
+import { Auth } from '../routes'
 
 const IS_AUTHENTICATED = gql`
 	{
@@ -26,14 +26,15 @@ const View = styled.div`
 	min-height: 100vh;
 	margin: 0 auto;
 	margin-top: ${({ theme }) => theme.size.navHeight};
-	padding: 5rem 0;
 `
 
 const AuthView = styled(View)`
-	padding-top: 15vh;
+	margin-top: 0;
+	padding-top: 10%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
+	align-items: center;
 `
 
 const App = () => {

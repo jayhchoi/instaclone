@@ -6,10 +6,10 @@ import styled from 'styled-components'
 import TextareaAutosize from 'react-autosize-textarea'
 import Moment from 'react-moment'
 
-import FatText from '../FatText'
+import FatText from '../../styledComponents/Text'
 import Avatar from '../Avatar'
 import { HeartFull, HeartEmpty, Comment as CommentIcon } from '../Icons'
-import useInput from '../../Hooks/useInput'
+import useInput from '../../hooks/useInput'
 import { TOGGLE_LIKE, CREATE_COMMENT } from '../../queries/post'
 import { FEEDS } from '../../queries/post'
 
@@ -156,7 +156,7 @@ const Post = ({
 							{comments.slice(-3).map(comment => (
 								<Comment key={comment.id}>
 									<FatText>{comment.user.username}</FatText>
-									{comment.text}
+									<CommentText>{comment.text}</CommentText>
 								</Comment>
 							))}
 						</Comments>
@@ -277,6 +277,11 @@ const Buttons = styled.div`
 		}
 	}
 	margin-bottom: 10px;
+`
+
+const CommentText = styled.span`
+	margin-left: 1rem;
+	word-wrap: break-word;
 `
 
 const Timestamp = styled.span`

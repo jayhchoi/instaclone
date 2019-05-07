@@ -1,9 +1,9 @@
 import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import styled from 'styled-components'
-import Loader from '../Components/Loader'
-import Post from '../Components/Post/Post'
-import { FEEDS } from '../queries/post'
+import Loader from '../../components/Loader'
+import Post from '../../components/Post/Post'
+import { FEEDS } from '../../queries/post'
 
 const Feed = () => {
 	const {

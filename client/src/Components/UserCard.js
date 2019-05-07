@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import Avatar from './Avatar'
-import FatText from './FatText'
+import FatText from '../styledComponents/Text'
 import FollowButton from './FollowButton'
 
 const Card = styled.div`

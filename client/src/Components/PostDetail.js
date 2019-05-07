@@ -6,10 +6,11 @@ import styled from 'styled-components'
 import TextareaAutosize from 'react-autosize-textarea'
 import Moment from 'react-moment'
 
-import FatText from './FatText'
+import FatText from '../styledComponents/Text'
 import Avatar from './Avatar'
 import { HeartFull, HeartEmpty } from './Icons'
-import useInput from './../Hooks/useInput'
+import useInput from './../hooks/useInput'
+import FollowButton from './FollowButton'
 import { TOGGLE_LIKE, CREATE_COMMENT } from './../queries/post'
 import { FEEDS, POST } from './../queries/post'
 
@@ -23,7 +24,7 @@ const PostDetail = ({
 		isLiked,
 		files,
 		comments,
-		user: { avatar, username }
+		user: { id: userId, avatar, username, isFollowed, isMe }
 	}
 }) => {
 	// STATES
@@ -127,13 +128,22 @@ const PostDetail = ({
 			</PhotoColumn>
 			<MetaColumn>
 				<Header>
-					<Avatar size="sm" url={avatar} />
 					<UserColumn>
-						<Link to={`/profile/${username}`}>
-							<FatText>{username}</FatText>
-						</Link>
-						<Location>{location || 'Seoul, S.Korea'}</Location>
+						<AvatarWrapper>
+							<Avatar size="sm" url={avatar} />
+						</AvatarWrapper>
+						<TextWrapper>
+							<Link to={`/profile/${username}`}>
+								<FatText>{username}</FatText>
+							</Link>
+							<Location>{location || 'Seoul, S.Korea'}</Location>
+						</TextWrapper>
 					</UserColumn>
+					{!isMe && (
+						<FollowColumn>
+							<FollowButton isFollowed={isFollowed} followingId={userId} />
+						</FollowColumn>
+					)}
 				</Header>
 				<MetaOne>
 					<Caption>
@@ -234,6 +244,7 @@ const Header = styled.header`
 	padding: 1.5rem;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	border-bottom: ${({ theme }) => theme.preset.boxBorder};
 
 	a {
@@ -243,7 +254,18 @@ const Header = styled.header`
 
 const UserColumn = styled.div`
 	margin-left: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `
+
+const AvatarWrapper = styled.div`
+	margin-right: 1rem;
+`
+
+const TextWrapper = styled.div``
+
+const FollowColumn = styled.div``
 
 const Location = styled.span`
 	display: block;

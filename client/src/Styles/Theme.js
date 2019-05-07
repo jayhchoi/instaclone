@@ -11,7 +11,8 @@ export default {
 	size: {
 		borderRadius: '4px',
 		maxWidth: '1000px',
-		navHeight: '7.7rem'
+		navHeight: '7.7rem',
+		fontWeightFat: '600'
 	},
 	preset: {
 		boxBorder: '1px solid #e6e6e6',
